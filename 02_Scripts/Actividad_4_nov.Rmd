@@ -1,0 +1,47 @@
+---
+title: "Actividad_30_nov"
+author: "Ivan"
+date: "2024-11-04"
+output: pdf_document
+---
+
+### Realizar las siguientes actividades
+
+-   Alinear al menos 2 secuencias
+-   Usar al menos 2 metodos de alineamiento
+-   Generar un arbol filogenetico
+-   Generar un Rmarkdown
+
+### codigo para cargar las secuencias
+
+Hay que seleccionar el archivo de secuencias que se encuentra en la carpeta Raw_Data.
+
+```{r}
+file.choose() -> Hepatitis_junto
+
+readDNAStringSet(Hepatitis_junto) -> Hepatitis_junto
+```
+
+### codigo para los alineamientos
+
+```{r}
+msa(Hepatitis_junto, "ClustalW") -> Alineamiento_Hepatitis
+
+msa(Hepatitis_junto, "ClustalOmega") -> Alineamiento_Hepatitis_alterno
+```
+
+### codigo para generar el arbol
+
+```{r}
+Alineamiento_Hepatitis2 <- msaConvert(Alineamiento_Hepatitis, type="seqinr::alignment")
+
+distancias <- dist.alignment(Alineamiento_Hepatitis2, "identity")
+
+as.matrix(distancias) -> distancias
+
+Arbol_hepatitis <- nj(distancias)
+
+plot(Arbol_hepatitis, main="Arbol filogenetico de las variantes 1, 3, 5 y 7 de la Hepatitis C")
+```
+
+-\> La grafica del arbol se encuentra n la carpeta Results
