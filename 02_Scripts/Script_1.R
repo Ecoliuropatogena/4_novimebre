@@ -37,3 +37,8 @@ Arbol_hepatitis <- nj(distancias)
 # Esta es la grafica
 plot(Arbol_hepatitis, main="Arbol filogenetico de las variantes 1, 3, 5 y 7 de la Hepatitis C")
 
+
+
+ 
+ 
+ 
